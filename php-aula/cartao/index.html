@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <form action="">
+
+        <div class="number">
+            <div>
+                <label for="cartao-numero">Numero do cartão</label>
+            </div>
+
+            <div>
+                <input type="number" name="numero-cartao" minlength="16" maxlength="16" placeholder="Número do cartão">
+            </div>
+        </div>
+
+        <div class="name">
+            <div>
+                <label for="name">Nome do titular</label>
+            </div>
+
+            <div>
+                <input type="text" name="name" placeholder="Nome do titular">
+            </div>
+        </div>
+
+        <div class="security-code">
+            <div>
+                <label for="password">Código de segurança</label>
+            </div>
+
+            <div>
+                <input type="password" minlength="6" maxlength="6" placeholder="Código de segurança">
+            </div>
+        </div>
+
+        <div class="date">
+            <div>
+                <label for="date">Data de validação</label>
+            </div>
+
+            <div>
+                <input type="date">
+            </div>
+        </div>
+
+        <div class="button">
+            <input type="submit" value="Enviar">
+        </div>
+        
+
+
+    </form>
+    
+</body>
+</html>
