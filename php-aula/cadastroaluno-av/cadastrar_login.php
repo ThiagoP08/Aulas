@@ -3,48 +3,51 @@
     ob_start();
     require 'config.php';
 
-    $avatar = $_FILES;
+    //Concede para as variáveis os valores do formulário
     $name = filter_input(INPUT_POST, 'name'); 
     $email = filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL); 
     $password = filter_input(INPUT_POST,'password'); 
     $password_confirm = filter_input(INPUT_POST,'password_confirm'); 
 
 
-    if($name && $email && $password && $password_confirm){
+    //Verifica se os valores existem
+    if($name && $email && $password && $password_confirm){  
         
-        $sql = $pdo->prepare("select * from tbl_login where email = :email");
+        $sql = $pdo->prepare("select * from usuarios where email = :email");    //Seleciona os valores da tabela usuario onde email possui um valor
         $sql->bindValue(':email', $email);
         $sql->execute();
 
-        // //Verifico se tem um mesmo email já cadastrado.
+       
         if($sql->rowCount() === 0){
-        //     //Verificar se a senha e a confirmação de senha são iguais.
-            if($password === $password_confirm){
+      
+            if($password === $password_confirm){    //Verifica se a "Senha" e "Confirmar Senha" são iguais, se forem, as funções são executadas
                 
-                $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                $password_hash = password_hash($password, PASSWORD_DEFAULT);    //Aplica o hash
                 
-                $sql = $pdo->prepare( "INSERT INTO tbl_login (nome,email,senha) VALUES (:name, :email, :password)" );
-                $sql->bindValue(':avatar', $avatar);
+                $sql = $pdo->prepare( "INSERT INTO usuarios (nome,email,senha) VALUES (:name, :email, :password)" );    //Adiciona os valores na tabla "usuarios"
                 $sql->bindValue(':name', $name); 
                 $sql->bindValue(':email', $email); 
                 $sql->bindValue(':password', $password_hash); 
                 $sql->execute();
+
                 
                 $_SESSION['msg'] = "Usuário Cadastrado com Sucesso!";
-                header("Location: index.php");
+                header("Location: login.php");
                 exit;
             } else {
                 $_SESSION['msg'] = "Erro: As Senhas não Batem!";
-                header('Location: inscrever.php ');
+                header('Location: cadastrar.php ');
                 exit;
             }
         } else {
             $_SESSION['msg'] = "Erro: E-mail já cadastrado!";
-            header('Location: inscrever.php ');
+            header('Location: cadastrar.php ');
             exit;
         }
     } else {
         $_SESSION['msg'] = "Erro: Necessário preencher todos os campos!";
-        header('Location: inscrever.php ');
+        header('Location: cadastrar.php ');
         exit;
     }
+
+    

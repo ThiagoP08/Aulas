@@ -6,7 +6,7 @@
 
     if(isset($_SESSION['nome'])){                
         header('Location: home.php');
-                exit;
+        exit;
     }
 
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);

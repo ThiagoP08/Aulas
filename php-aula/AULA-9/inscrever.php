@@ -19,6 +19,16 @@
        
    
     <form action="cadastrar_login.php" method="post">
+
+    <div class="mb-3">
+            <label for="home.php">
+                Coloque uma foto: </br>
+                </br> 
+                <input type="file" name="arquivo" />
+                <input type="submit" value="Enviar">
+            </label>
+        </div>
+        
         <div class="mb-3">
             <label for="" class="form-label">
                 Nome: <br/>
